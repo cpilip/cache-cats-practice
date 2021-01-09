@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,9 +13,32 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject dialogueInterface;
 
+    private GameObject portrait;
+
     public void EnableDialogue()
     {
         dialogueInterface.SetActive(true);
+        switch (EventSystem.current.currentSelectedGameObject.name)
+        {
+            case "Sylvia":
+                portrait = dialogueInterface.transform.GetChild(1).GetChild(0).gameObject;
+                portrait.SetActive(true);
+                break;
+            case "First Mate":
+                portrait = dialogueInterface.transform.GetChild(1).GetChild(1).gameObject;
+                portrait.SetActive(true);
+                break;
+            case "Token Female":
+                portrait = dialogueInterface.transform.GetChild(1).GetChild(2).gameObject;
+                portrait.SetActive(true);
+                break;
+            case "Parrot":
+                portrait = dialogueInterface.transform.GetChild(1).GetChild(3).gameObject;
+                portrait.SetActive(true);
+                break;
+            
+        }
+        
     }
 
     // Start is called before the first frame update
@@ -25,7 +49,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue (Dialogue dialogue)
     {
-        nameText.text = "???";
+        nameText.text = dialogue.name;
 
         sentences.Clear();
 
@@ -64,6 +88,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisableDialogue()
     {
+        portrait.SetActive(false);
         dialogueInterface.SetActive(false);
     }
 }
