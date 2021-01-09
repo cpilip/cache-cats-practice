@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public static class Inventory
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static int shells, doubloons, gems, spices, rum;
 
-    // Update is called once per frame
-    void Update()
+    // relationship levels
+    private static int mermaidHearts, mateHearts, femaleHearts, privateerHearts, parrotHearts;
+
+    private static string playerName;
+
+    public static int Shells
     {
-        
+        get
+        {
+            return shells;
+        }
+        set
+        {
+            shells = value;
+        }
     }
 }

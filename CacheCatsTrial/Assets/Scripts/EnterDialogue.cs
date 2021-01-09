@@ -10,4 +10,9 @@ public class EnterDialogue : MonoBehaviour
     {
         dialogueInterface.SetActive(true);
     }
+
+    public void DisableDialogue()
+    {
+        dialogueInterface.SetActive(false);
+    }
 }

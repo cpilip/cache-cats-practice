@@ -16,7 +16,7 @@ public class fade : MonoBehaviour
     public IEnumerator fadeElement(float speed)
     {
         var tempColor = element.GetComponent<Image>().color;
-        while (element.GetComponent<Image>().color.a < 1f)
+        while (element.GetComponent<Image>().color.a < .729f)
         {
             tempColor = new Color(tempColor.r, tempColor.g, tempColor.b, tempColor.a + (Time.deltaTime / speed));
             element.GetComponent<Image>().color = tempColor;
