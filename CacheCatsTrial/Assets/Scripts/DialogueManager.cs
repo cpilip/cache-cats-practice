@@ -24,6 +24,9 @@ public class DialogueManager : MonoBehaviour
 
     private System.Random randm = new System.Random();
 
+    public AudioSource ClickSound;
+    public AudioSource SplashSound;
+
     public void EnableDialogue()
     {
         characterName = EventSystem.current.currentSelectedGameObject.name;
@@ -37,6 +40,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(0).gameObject;
                     portrait.SetActive(true);
+                    SplashSound.Play();
                     if (Inventory.MermaidHearts == 0)
                     {
                         ReadDialogue("Sylvio_Intro.txt");
@@ -65,6 +69,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(1).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.MateHearts == 0)
                     {
                         ReadDialogue("Mate_Intro.txt");
@@ -93,6 +98,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(2).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.MadgeHearts == 0)
                     {
                         ReadDialogue("Madge_Intro.txt");
@@ -120,6 +126,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(3).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.ParrotHearts == 0)
                     {
                         ReadDialogue("Parrot_Intro.txt");
@@ -148,6 +155,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(4).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.PrivateerHearts == 0)
                     {
                         ReadDialogue("Jay_Intro.txt");
