@@ -7,7 +7,7 @@ public static class Inventory
     private static int shells, doubloons, gems, spices, rum;
 
     // relationship levels
-    private static int mermaidHearts, mateHearts, femaleHearts, privateerHearts, parrotHearts;
+    private static int mermaidHearts, mateHearts, madgeHearts, privateerHearts, parrotHearts;
 
     private static string playerName;
 
@@ -97,15 +97,15 @@ public static class Inventory
         }
     }
 
-    public static int FemaleHearts
+    public static int MadgeHearts
     {
         get
         {
-            return femaleHearts;
+            return madgeHearts;
         }
         set
         {
-            femaleHearts = value;
+            madgeHearts = value;
         }
     }
 

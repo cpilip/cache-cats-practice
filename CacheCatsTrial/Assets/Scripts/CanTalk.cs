@@ -4,7 +4,9 @@ using UnityEngine;
 
 public static class CanTalk
 {
-    private static bool mermaid, mate, female, privateer, parrot;
+    private static bool mermaid, mate, madge, privateer, parrot;
+    private static bool halfMermaid, halfMate, halfMadge, halfPrivateer, halfParrot;
+    private static bool finalMermaid, finalMate, finalMadge, finalPrivateer, finalParrot;
 
     public static bool toMermaid
     {
@@ -30,15 +32,15 @@ public static class CanTalk
         }
     }
 
-    public static bool toFemale
+    public static bool toMadge
     {
         get
         {
-            return female;
+            return madge;
         }
         set
         {
-            female = value;
+            madge = value;
         }
     }
 
@@ -63,6 +65,126 @@ public static class CanTalk
         set
         {
             parrot = value;
+        }
+    }
+
+    public static bool halfEventMermaid
+    {
+        get
+        {
+            return halfMermaid;
+        }
+        set
+        {
+            halfMermaid = value;
+        }
+    }
+
+    public static bool halfEventMate
+    {
+        get
+        {
+            return halfMate;
+        }
+        set
+        {
+            halfMate = value;
+        }
+    }
+
+    public static bool halfEventMadge
+    {
+        get
+        {
+            return halfMadge;
+        }
+        set
+        {
+            halfMadge = value;
+        }
+    }
+
+    public static bool halfEventPrivateer
+    {
+        get
+        {
+            return halfPrivateer;
+        }
+        set
+        {
+            halfPrivateer = value;
+        }
+    }
+
+    public static bool halfEventParrot
+    {
+        get
+        {
+            return halfParrot;
+        }
+        set
+        {
+            halfParrot = value;
+        }
+    }
+
+    public static bool finalEventMermaid
+    {
+        get
+        {
+            return finalMermaid;
+        }
+        set
+        {
+            finalMermaid = value;
+        }
+    }
+
+    public static bool finalEventMate
+    {
+        get
+        {
+            return finalMate;
+        }
+        set
+        {
+            finalMate = value;
+        }
+    }
+
+    public static bool finalEventMadge
+    {
+        get
+        {
+            return finalMadge;
+        }
+        set
+        {
+            finalMadge = value;
+        }
+    }
+
+    public static bool finalEventPrivateer
+    {
+        get
+        {
+            return finalPrivateer;
+        }
+        set
+        {
+            finalPrivateer = value;
+        }
+    }
+
+    public static bool finalEventParrot
+    {
+        get
+        {
+            return finalParrot;
+        }
+        set
+        {
+            finalParrot = value;
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CanGift
 {
-    private static bool mermaid, mate, female, privateer, parrot;
+    private static bool mermaid, mate, madge, privateer, parrot;
 
     public static bool toMermaid
     {
@@ -30,15 +30,15 @@ public static class CanGift
         }
     }
 
-    public static bool toFemale
+    public static bool toMadge
     {
         get
         {
-            return female;
+            return madge;
         }
         set
         {
-            female = value;
+            madge = value;
         }
     }
 

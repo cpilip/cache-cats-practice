@@ -1,4 +1,4 @@
-: :You move on and approach your good ole’ first mate, Mizzen.
+: :You walk around the ship and approach your good ole’ first mate, Mizzen.
 Ah, ahoy cap’n. How goes it? 
 : :Fine, you say and ask about the ship.
 She’s ship-shape, just how we like it.

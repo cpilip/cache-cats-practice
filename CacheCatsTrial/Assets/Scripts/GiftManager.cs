@@ -18,6 +18,10 @@ public class GiftManager : MonoBehaviour
     private GameObject portrait;
     private string characterName;
 
+    private GameObject[] hearts = new GameObject[4];
+    public Sprite RedHeart;
+    public Sprite GrayHeart;
+
     public Dialogue dialogue;
     string myFilePath;
 
@@ -25,6 +29,7 @@ public class GiftManager : MonoBehaviour
 
     public void GiveGift()
     {
+        AssignHearts();
         characterName = EventSystem.current.currentSelectedGameObject.name;
         nameBox = dialogueInterface.transform.GetChild(2).GetChild(2).gameObject;
 
@@ -36,12 +41,11 @@ public class GiftManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(0).gameObject;
                     portrait.SetActive(true);
-                    if (Inventory.MermaidHearts == 0)
-                    {
-                        ReadDialogue("Sylvia_Intro.txt");
-                        Inventory.MermaidHearts++;
-                    }
-                    CanGift.toMermaid = false;
+
+                    Inventory.Shells--;
+                    Inventory.MermaidHearts++;
+                    DisplayHeartLevel(Inventory.MermaidHearts);
+                    GetThanks("Sylvio");
                 }
                 break;
             case "Gift Doubloon":
@@ -50,17 +54,24 @@ public class GiftManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(1).gameObject;
                     portrait.SetActive(true);
-                    int thanks = randm.Next(1, 4);
-                    string thanktxt = "Mate_Thanks" + thanks + ".txt";
-                    ReadDialogue(thanktxt);
+
+                    Inventory.Doubloons--;
+                    Inventory.MateHearts++;
+                    DisplayHeartLevel(Inventory.MateHearts);
+                    GetThanks("Mate");
                 }
                 break;
             case "Gift Gem":
-                if (CanGift.toFemale == true && Inventory.Gems > 0)
+                if (CanGift.toMadge == true && Inventory.Gems > 0)
                 {
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(2).gameObject;
                     portrait.SetActive(true);
+
+                    Inventory.Gems--;
+                    Inventory.MadgeHearts++;
+                    DisplayHeartLevel(Inventory.MadgeHearts);
+                    GetThanks("Madge");
                 }
                 break;
             case "Gift Rum":
@@ -69,12 +80,11 @@ public class GiftManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(3).gameObject;
                     portrait.SetActive(true);
-                    if (Inventory.ParrotHearts == 0)
-                    {
-                        ReadDialogue("Parrot_Intro.txt");
-                        Inventory.ParrotHearts++;
-                    }
-                    CanGift.toParrot = false;
+
+                    Inventory.Rum--;
+                    Inventory.ParrotHearts++;
+                    DisplayHeartLevel(Inventory.ParrotHearts);
+                    GetThanks("Parrot");
                 }
                 break;
             case "Gift Spices":
@@ -83,22 +93,15 @@ public class GiftManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(4).gameObject;
                     portrait.SetActive(true);
-                    if (Inventory.PrivateerHearts == 0)
-                    {
-                        ReadDialogue("Jay_Intro.txt");
-                        Inventory.PrivateerHearts++;
-                    }
-                    else if (Inventory.PrivateerHearts >= 1)
-                    {
-                        int pun = randm.Next(1, 6);
-                        string puntxt = "Jay_Puns" + pun + ".txt";
-                        ReadDialogue(puntxt);
-                    }
-                    CanGift.toPrivateer = false;
+
+                    Inventory.Spices--;
+                    Inventory.PrivateerHearts++;
+                    DisplayHeartLevel(Inventory.PrivateerHearts);
+                    GetThanks("Jay");
                 }
                 break;
         }
-
+        
     }
 
     // Start is called before the first frame update
@@ -123,6 +126,8 @@ public class GiftManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        int i;
+
         if (sentences.Count == 0)
         {
             DisableDialogue();
@@ -136,10 +141,10 @@ public class GiftManager : MonoBehaviour
         // Check if sentence include "your name" tag and replace with your name
         if (sentence.Contains("Y/N"))
         {
-            int len = sentence.Length, i;
+            int len = sentence.Length;
             for (i = 0; i < len - 4; i++)
             {
-                if (sentence.Substring(i, i + 3) == "Y/N")
+                if (sentence.Substring(i, 3) == "Y/N")
                 {
                     break;
                 }
@@ -150,7 +155,7 @@ public class GiftManager : MonoBehaviour
         // check for name flags at the beginnings of sentences
         if (sentence[0] == ':')
         {
-            int i = 1;
+            i = 1;
             while (sentence[i] != ':')
             {
                 i++;
@@ -181,6 +186,7 @@ public class GiftManager : MonoBehaviour
 
     public void DisableDialogue()
     {
+        ResetHearts();
         portrait.SetActive(false);
         dialogueInterface.SetActive(false);
     }
@@ -190,6 +196,7 @@ public class GiftManager : MonoBehaviour
         myFilePath = Application.dataPath + "/Dialogue/" + fileName;
 
         dialogue.sentences = File.ReadAllLines(myFilePath);
+        characterName = GetName(characterName);
         dialogue.name = characterName;
 
         StartDialogue(dialogue);
@@ -203,5 +210,67 @@ public class GiftManager : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
+    }
+
+    private string GetName(string button)
+    {
+        if (button == "Gift Doubloon")
+        {
+            return "Mizzen";
+        }
+        if (button == "Gift Shell")
+        {
+            return "Sylvio";
+        }
+        if (button == "Gift Rum")
+        {
+            return "Polly";
+        }
+        if (button == "Gift Spices")
+        {
+            return "Sir Jay";
+        }
+        if (button == "Gift Gem")
+        {
+            return "Madge";
+        }
+        else
+        {
+            return " ";
+        }
+    }
+
+    private void AssignHearts()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            hearts[i] = dialogueInterface.transform.GetChild(3).GetChild(i).gameObject;
+        }
+        
+    }
+    private void DisplayHeartLevel(int lvl)
+    {
+        if (lvl > 5)
+        {
+            lvl = 5;
+        }
+        for (int i=0; i<lvl-1; i++)
+        {
+            hearts[i].GetComponent<Image>().sprite = RedHeart;
+        }
+    }
+    private void ResetHearts()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            hearts[i].GetComponent<Image>().sprite = GrayHeart;
+        }
+    }
+
+    private void GetThanks(string prefix)
+    {
+        int thanks = randm.Next(1, 4);
+        string puntxt = prefix + "_Thanks" + thanks + ".txt";
+        ReadDialogue(puntxt);
     }
 }

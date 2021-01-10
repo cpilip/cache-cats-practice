@@ -8,13 +8,13 @@ public class TalkTracker : MonoBehaviour
     {
         CanTalk.toMermaid = true;
         CanTalk.toMate = true;
-        CanTalk.toFemale = true;
+        CanTalk.toMadge = true;
         CanTalk.toPrivateer = true;
         CanTalk.toParrot = true;
 
         CanGift.toMermaid = true;
         CanGift.toMate = true;
-        CanGift.toFemale = true;
+        CanGift.toMadge = true;
         CanGift.toPrivateer = true;
         CanGift.toParrot = true;
     }

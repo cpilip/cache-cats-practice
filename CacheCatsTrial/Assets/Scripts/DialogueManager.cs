@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -38,8 +39,22 @@ public class DialogueManager : MonoBehaviour
                     portrait.SetActive(true);
                     if (Inventory.MermaidHearts == 0)
                     {
-                        ReadDialogue("Sylvia_Intro.txt");
+                        ReadDialogue("Sylvio_Intro.txt");
                         Inventory.MermaidHearts++;
+                    }
+                    else if (Inventory.MermaidHearts >= 2 && CanTalk.halfEventMermaid == false)
+                    {
+                        ReadDialogue("Sylvio_Halfway.txt");
+                        CanTalk.halfEventMermaid = true;
+                    }
+                    else if (Inventory.MermaidHearts >= 4 && CanTalk.halfEventMermaid == true && CanTalk.finalEventMermaid == false)
+                    {
+                        ReadDialogue("Sylvio_Final.txt");
+                        CanTalk.finalEventMermaid = true;
+                    }
+                    else if (Inventory.MermaidHearts >= 1)
+                    {
+                        GetPun("Sylvio", 5);
                     }
                     CanTalk.toMermaid = false;
                 }
@@ -55,20 +70,38 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Mate_Intro.txt");
                         Inventory.MateHearts++;
                     }
+                    else if (Inventory.MateHearts >= 2 && CanTalk.halfEventMate == false)
+                    {
+                        ReadDialogue("Mate_Halfway.txt");
+                        CanTalk.halfEventMate = true;
+                    }
+                    else if (Inventory.MateHearts >= 4 && CanTalk.halfEventMate == true && CanTalk.finalEventMate == false)
+                    {
+                        ReadDialogue("Mate_Final.txt");
+                        CanTalk.finalEventMate = true;
+                    }
                     else if (Inventory.MateHearts >= 1)
                     {
-                        int pun = randm.Next(1, 4);
-                        string puntxt = "Mate_Puns" + pun + ".txt";
-                        ReadDialogue("Mate_Puns1.txt");
+                        GetPun("Mate", 3);
                     }
+                    CanTalk.toMate = false;
                 }
                 break;
-            case "Token Female":
-                if (CanTalk.toFemale == true)
+            case "Madge":
+                if (CanTalk.toMadge == true)
                 {
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(2).gameObject;
                     portrait.SetActive(true);
+                    if (Inventory.MadgeHearts == 0)
+                    {
+                        ReadDialogue("Madge_Intro.txt");
+                        Inventory.MadgeHearts++;
+                    }
+                    else if (Inventory.MateHearts >= 1)
+                    {
+                        GetPun("Madge", 3);
+                    }
                 }
                 break;
             case "Polly":
@@ -96,11 +129,19 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Jay_Intro.txt");
                         Inventory.PrivateerHearts++;
                     }
+                    else if (Inventory.PrivateerHearts >= 2 && CanTalk.halfEventPrivateer == false)
+                    {
+                        ReadDialogue("Jay_Halfway.txt");
+                        CanTalk.halfEventMate = true;
+                    }
+                    else if (Inventory.PrivateerHearts >= 4 && CanTalk.halfEventPrivateer == true && CanTalk.finalEventPrivateer == false)
+                    {
+                        ReadDialogue("Jay_Final.txt");
+                        CanTalk.finalEventPrivateer = true;
+                    }
                     else if (Inventory.PrivateerHearts >= 1)
                     {
-                        int pun = randm.Next(1, 6);
-                        string puntxt = "Jay_Puns" + pun + ".txt";
-                        ReadDialogue(puntxt);
+                        GetPun("Jay", 5);
                     }
                     CanTalk.toPrivateer = false;
                 }
@@ -131,6 +172,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        int i;
+
         if (sentences.Count == 0)
         {
             DisableDialogue();
@@ -144,21 +187,13 @@ public class DialogueManager : MonoBehaviour
         // Check if sentence include "your name" tag and replace with your name
         if (sentence.Contains("Y/N"))
         {
-            int len = sentence.Length, i;
-            for (i = 0; i < len - 4; i++)
-            {
-                if (sentence.Substring(i,i+3) == "Y/N")
-                {
-                    break;
-                }
-            }
-            sentence = sentence.Substring(0, i) + Inventory.PlayerName + sentence.Substring(i + 3);
+            sentence = Regex.Replace(sentence, "(?:Y\\/N)", Inventory.PlayerName, RegexOptions.IgnorePatternWhitespace);
         }
 
         // check for name flags at the beginnings of sentences
         if (sentence[0] == ':')
         {
-            int i = 1;
+            i = 1;
             while (sentence[i] != ':')
             {
                 i++;
@@ -211,5 +246,12 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
+    }
+
+    private void GetPun(string prefix, int numPuns)
+    {
+        int pun = randm.Next(1, numPuns + 1);
+        string puntxt = prefix + "_Puns" + pun + ".txt";
+        ReadDialogue(puntxt);
     }
 }
