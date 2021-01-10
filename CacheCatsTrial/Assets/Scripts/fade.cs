@@ -8,6 +8,7 @@ public class fade : MonoBehaviour
     public GameObject element;
     public float speed;
 
+
     void OnEnable()
     {
         StartCoroutine(fadeElement(speed));
@@ -23,6 +24,8 @@ public class fade : MonoBehaviour
             yield return null;
             // Debug.Log("mario loading");
         }
+
+
     }
 
     // Start is called before the first frame update

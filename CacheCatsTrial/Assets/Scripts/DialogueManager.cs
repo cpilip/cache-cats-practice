@@ -23,8 +23,11 @@ public class DialogueManager : MonoBehaviour
     string myFilePath;
 
     private System.Random randm = new System.Random();
+    private Color originalColor;
 
     public GameObject particleContainer;
+
+    
     public void EnableDialogue()
     {
         characterName = EventSystem.current.currentSelectedGameObject.name;
@@ -193,6 +196,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalColor = dialogueInterface.transform.GetChild(0).GetComponent<Image>().color;
         sentences = new Queue<string>();
     }
 
@@ -264,6 +268,8 @@ public class DialogueManager : MonoBehaviour
 
     public void DisableDialogue()
     {
+
+        dialogueInterface.transform.GetChild(0).GetComponent<Image>().color = originalColor;
         portrait.SetActive(false);
         dialogueInterface.SetActive(false);
     }
