@@ -17,6 +17,8 @@ public class Pickup : MonoBehaviour
         Sprite[] sprites = Resources.LoadAll<Sprite>("Icons");
 
         renderer.sprite = (Sprite) sprites[loot_type];
+
+        Invoke("DestroySelf", 5f);
     }
 
     // Update is called once per frame
@@ -27,15 +29,18 @@ public class Pickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.gameObject.name != "Player")
+        {
+            return;
+        }
+
         Debug.Log("DEBUG: Hit the pickup.");
 
         // Increment the relevant loot counter.
         switch (loot_type)
         {
             case 0:
-                Debug.Log("Inventory Rum was: " + Inventory.Rum);
                 Inventory.Rum = Inventory.Rum + 1;
-                Debug.Log("Inventory Rum is: " + Inventory.Rum);
                 break;
             case 1:
                 Inventory.Shells = Inventory.Shells + 1;
@@ -51,6 +56,12 @@ public class Pickup : MonoBehaviour
                 break;
         }
 
+        // Destroy the pickup.
+        DestroySelf();
+    }
+
+    void DestroySelf()
+    {
         // Destroy the pickup.
         Destroy(gameObject);
     }
