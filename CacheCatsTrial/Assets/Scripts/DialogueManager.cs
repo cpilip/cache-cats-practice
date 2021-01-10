@@ -98,9 +98,19 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Madge_Intro.txt");
                         Inventory.MadgeHearts++;
                     }
-                    else if (Inventory.MateHearts >= 1)
+                    else if (Inventory.MadgeHearts >= 2 && CanTalk.halfEventMadge == false)
                     {
-                        GetPun("Madge", 3);
+                        ReadDialogue("Madge_Halfway.txt");
+                        CanTalk.halfEventMate = true;
+                    }
+                    else if (Inventory.MadgeHearts >= 4 && CanTalk.halfEventMadge == true && CanTalk.finalEventMadge == false)
+                    {
+                        ReadDialogue("Madge_Final.txt");
+                        CanTalk.finalEventMate = true;
+                    }
+                    else if (Inventory.MadgeHearts >= 1)
+                    {
+                        GetPun("Madge", 5);
                     }
                 }
                 break;
@@ -114,6 +124,20 @@ public class DialogueManager : MonoBehaviour
                     {
                         ReadDialogue("Parrot_Intro.txt");
                         Inventory.ParrotHearts++;
+                    }
+                    else if (Inventory.ParrotHearts >= 2 && CanTalk.halfEventParrot == false)
+                    {
+                        ReadDialogue("Parrot_Halfway.txt");
+                        CanTalk.halfEventParrot = true;
+                    }
+                    else if (Inventory.ParrotHearts >= 4 && CanTalk.halfEventParrot == true && CanTalk.finalEventParrot == false)
+                    {
+                        ReadDialogue("Parrot_Final.txt");
+                        CanTalk.finalEventParrot = true;
+                    }
+                    else if (Inventory.ParrotHearts >= 1)
+                    {
+                        GetPun("Parrot", 5);
                     }
                     CanTalk.toParrot = false;
                 }
