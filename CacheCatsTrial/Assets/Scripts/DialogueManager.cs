@@ -42,12 +42,12 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Sylvio_Intro.txt");
                         Inventory.MermaidHearts++;
                     }
-                    else if (Inventory.MermaidHearts >= 2 && CanTalk.halfEventMermaid == false)
+                    else if (Inventory.MermaidHearts >= 3 && CanTalk.halfEventMermaid == false)
                     {
                         ReadDialogue("Sylvio_Halfway.txt");
                         CanTalk.halfEventMermaid = true;
                     }
-                    else if (Inventory.MermaidHearts >= 4 && CanTalk.halfEventMermaid == true && CanTalk.finalEventMermaid == false)
+                    else if (Inventory.MermaidHearts >= 5 && CanTalk.halfEventMermaid == true && CanTalk.finalEventMermaid == false)
                     {
                         ReadDialogue("Sylvio_Final.txt");
                         CanTalk.finalEventMermaid = true;
@@ -70,12 +70,12 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Mate_Intro.txt");
                         Inventory.MateHearts++;
                     }
-                    else if (Inventory.MateHearts >= 2 && CanTalk.halfEventMate == false)
+                    else if (Inventory.MateHearts >= 3 && CanTalk.halfEventMate == false)
                     {
                         ReadDialogue("Mate_Halfway.txt");
                         CanTalk.halfEventMate = true;
                     }
-                    else if (Inventory.MateHearts >= 4 && CanTalk.halfEventMate == true && CanTalk.finalEventMate == false)
+                    else if (Inventory.MateHearts >= 5 && CanTalk.halfEventMate == true && CanTalk.finalEventMate == false)
                     {
                         ReadDialogue("Mate_Final.txt");
                         CanTalk.finalEventMate = true;
@@ -98,12 +98,12 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Madge_Intro.txt");
                         Inventory.MadgeHearts++;
                     }
-                    else if (Inventory.MadgeHearts >= 2 && CanTalk.halfEventMadge == false)
+                    else if (Inventory.MadgeHearts >= 3 && CanTalk.halfEventMadge == false)
                     {
                         ReadDialogue("Madge_Halfway.txt");
                         CanTalk.halfEventMate = true;
                     }
-                    else if (Inventory.MadgeHearts >= 4 && CanTalk.halfEventMadge == true && CanTalk.finalEventMadge == false)
+                    else if (Inventory.MadgeHearts >= 5 && CanTalk.halfEventMadge == true && CanTalk.finalEventMadge == false)
                     {
                         ReadDialogue("Madge_Final.txt");
                         CanTalk.finalEventMate = true;
@@ -125,12 +125,12 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Parrot_Intro.txt");
                         Inventory.ParrotHearts++;
                     }
-                    else if (Inventory.ParrotHearts >= 2 && CanTalk.halfEventParrot == false)
+                    else if (Inventory.ParrotHearts >= 3 && CanTalk.halfEventParrot == false)
                     {
                         ReadDialogue("Parrot_Halfway.txt");
                         CanTalk.halfEventParrot = true;
                     }
-                    else if (Inventory.ParrotHearts >= 4 && CanTalk.halfEventParrot == true && CanTalk.finalEventParrot == false)
+                    else if (Inventory.ParrotHearts >= 5 && CanTalk.halfEventParrot == true && CanTalk.finalEventParrot == false)
                     {
                         ReadDialogue("Parrot_Final.txt");
                         CanTalk.finalEventParrot = true;
@@ -153,12 +153,12 @@ public class DialogueManager : MonoBehaviour
                         ReadDialogue("Jay_Intro.txt");
                         Inventory.PrivateerHearts++;
                     }
-                    else if (Inventory.PrivateerHearts >= 2 && CanTalk.halfEventPrivateer == false)
+                    else if (Inventory.PrivateerHearts >= 3 && CanTalk.halfEventPrivateer == false)
                     {
                         ReadDialogue("Jay_Halfway.txt");
                         CanTalk.halfEventMate = true;
                     }
-                    else if (Inventory.PrivateerHearts >= 4 && CanTalk.halfEventPrivateer == true && CanTalk.finalEventPrivateer == false)
+                    else if (Inventory.PrivateerHearts >= 5 && CanTalk.halfEventPrivateer == true && CanTalk.finalEventPrivateer == false)
                     {
                         ReadDialogue("Jay_Final.txt");
                         CanTalk.finalEventPrivateer = true;
