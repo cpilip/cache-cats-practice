@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     private System.Random randm = new System.Random();
 
+    public GameObject particleContainer;
     public void EnableDialogue()
     {
         characterName = EventSystem.current.currentSelectedGameObject.name;
@@ -39,16 +40,19 @@ public class DialogueManager : MonoBehaviour
                     portrait.SetActive(true);
                     if (Inventory.MermaidHearts == 0)
                     {
+                        particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Sylvio_Intro.txt");
                         Inventory.MermaidHearts++;
                     }
                     else if (Inventory.MermaidHearts >= 3 && CanTalk.halfEventMermaid == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Sylvio_Halfway.txt");
                         CanTalk.halfEventMermaid = true;
                     }
                     else if (Inventory.MermaidHearts >= 5 && CanTalk.halfEventMermaid == true && CanTalk.finalEventMermaid == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Sylvio_Final.txt");
                         CanTalk.finalEventMermaid = true;
                     }
@@ -67,16 +71,19 @@ public class DialogueManager : MonoBehaviour
                     portrait.SetActive(true);
                     if (Inventory.MateHearts == 0)
                     {
+                        particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Mate_Intro.txt");
                         Inventory.MateHearts++;
                     }
                     else if (Inventory.MateHearts >= 3 && CanTalk.halfEventMate == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Mate_Halfway.txt");
                         CanTalk.halfEventMate = true;
                     }
                     else if (Inventory.MateHearts >= 5 && CanTalk.halfEventMate == true && CanTalk.finalEventMate == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Mate_Final.txt");
                         CanTalk.finalEventMate = true;
                     }
@@ -95,16 +102,19 @@ public class DialogueManager : MonoBehaviour
                     portrait.SetActive(true);
                     if (Inventory.MadgeHearts == 0)
                     {
+                        particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Madge_Intro.txt");
                         Inventory.MadgeHearts++;
                     }
                     else if (Inventory.MadgeHearts >= 3 && CanTalk.halfEventMadge == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Madge_Halfway.txt");
                         CanTalk.halfEventMate = true;
                     }
                     else if (Inventory.MadgeHearts >= 5 && CanTalk.halfEventMadge == true && CanTalk.finalEventMadge == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Madge_Final.txt");
                         CanTalk.finalEventMate = true;
                     }
@@ -122,16 +132,19 @@ public class DialogueManager : MonoBehaviour
                     portrait.SetActive(true);
                     if (Inventory.ParrotHearts == 0)
                     {
+                        particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Parrot_Intro.txt");
                         Inventory.ParrotHearts++;
                     }
                     else if (Inventory.ParrotHearts >= 3 && CanTalk.halfEventParrot == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Parrot_Halfway.txt");
                         CanTalk.halfEventParrot = true;
                     }
                     else if (Inventory.ParrotHearts >= 5 && CanTalk.halfEventParrot == true && CanTalk.finalEventParrot == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Parrot_Final.txt");
                         CanTalk.finalEventParrot = true;
                     }
@@ -150,16 +163,19 @@ public class DialogueManager : MonoBehaviour
                     portrait.SetActive(true);
                     if (Inventory.PrivateerHearts == 0)
                     {
+                        particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Jay_Intro.txt");
                         Inventory.PrivateerHearts++;
                     }
                     else if (Inventory.PrivateerHearts >= 3 && CanTalk.halfEventPrivateer == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Jay_Halfway.txt");
                         CanTalk.halfEventMate = true;
                     }
                     else if (Inventory.PrivateerHearts >= 5 && CanTalk.halfEventPrivateer == true && CanTalk.finalEventPrivateer == false)
                     {
+                        particleContainer.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                         ReadDialogue("Jay_Final.txt");
                         CanTalk.finalEventPrivateer = true;
                     }
