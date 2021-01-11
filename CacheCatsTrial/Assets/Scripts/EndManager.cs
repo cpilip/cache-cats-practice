@@ -127,9 +127,10 @@ public class EndManager : MonoBehaviour
 
     public void ReadDialogue(string fileName)
     {
-        myFilePath = Application.dataPath + "/Dialogue/" + fileName;
 
-        dialogue.sentences = File.ReadAllLines(myFilePath);
+
+        string file = ("Dialogue/" + fileName).Substring(0, ("Dialogue/" + fileName).Length - 4);
+        dialogue.sentences = Resources.Load<TextAsset>(file).text.Split("\n"[0]);
         dialogue.name = " ";
 
         StartDialogue(dialogue);
