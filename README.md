@@ -10,11 +10,11 @@ The theme picked by a neutral party of our peers (okay, just Sarah) was "Water A
 
   Looking for love on the high seas? Play *Pirate's Booty*, a fun and interactive dating simulator with minigames, mischief, and more!
 
-![logo](https://github.com/cpilip/cache-cats-trial/blob/master/Art/Logo.png)
-
 ## ***How to Play***
 
 Download the ``PiratesBooty`` folder and run ``Pirate's Booty.exe``. Enjoy! 
+
+![logo](https://github.com/cpilip/cache-cats-trial/blob/master/Art/Logo.png)
 
 ## ***The Cache Cats***
 
