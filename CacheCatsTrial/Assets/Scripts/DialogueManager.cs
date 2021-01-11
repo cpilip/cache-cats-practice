@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
     public AudioSource SplashSound;
     private GameObject audioIntro, audioLoop;
 
-    public GameObject particleContainer;
+    public GameObject particleContainer, endPanel;
 
     public void EnableDialogue()
     {
@@ -287,6 +287,10 @@ public class DialogueManager : MonoBehaviour
         dialogueInterface.transform.GetChild(0).GetComponent<Image>().color = originalColor;
         portrait.SetActive(false);
         dialogueInterface.SetActive(false);
+        if (CanTalk.finalEventPrivateer == true || CanTalk.finalEventParrot == true || CanTalk.finalEventMate == true || CanTalk.finalEventMadge == true || CanTalk.finalEventMermaid == true)
+        {
+            endPanel.SetActive(true);
+        }
     }
 
     public void ReadDialogue(string fileName)
