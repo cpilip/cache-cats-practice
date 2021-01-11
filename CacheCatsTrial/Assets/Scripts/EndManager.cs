@@ -2,11 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System.Text.RegularExpressions;
 
 public class EndManager : MonoBehaviour
 {
+    public AudioSource music;
+
+    public Text nameText;
+    public Text dialogueText;
+
+    public Queue<string> sentences;
+
+    public GameObject dialogueInterface;
+
+    public Dialogue dialogue;
+    string myFilePath;
+
     //public Image element;
-        void OnEnable()
+    void OnEnable()
         {
             StartCoroutine("fadeEnd");
 
@@ -25,6 +39,8 @@ public class EndManager : MonoBehaviour
 
         // Should go through outro dialogue here
         // Once done, disable dialogue and start the following coroutine
+        EnableDialogue();
+
         yield return StartCoroutine("fadeText");
 
     }
@@ -51,6 +67,69 @@ public class EndManager : MonoBehaviour
         Application.Quit();
     }
 
-    
-    
+    public void EnableDialogue()
+    {
+        dialogueInterface.SetActive(true);
+        ReadDialogue("End_Text.txt");
+        music.Play();
+    }
+
+    void Start()
+    {
+        sentences = new Queue<string>();
+    }
+
+    public void StartDialogue(Dialogue dialogue)
+    {
+        sentences.Clear();
+
+        foreach (string sentence in dialogue.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+    }
+
+    public void DisplayNextSentence()
+    {
+        if (sentences.Count == 0)
+        {
+            DisableDialogue();
+            return;
+        }
+
+        string sentence = sentences.Dequeue();
+
+        
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+        
+    }
+
+    public void DisableDialogue()
+    {
+        dialogueInterface.SetActive(false);
+    }
+
+    public void ReadDialogue(string fileName)
+    {
+        myFilePath = Application.dataPath + "/Dialogue/" + fileName;
+
+        dialogue.sentences = File.ReadAllLines(myFilePath);
+        dialogue.name = " ";
+
+        StartDialogue(dialogue);
+    }
+
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogueText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return null;
+        }
+    }
 }
+
