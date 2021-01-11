@@ -21,7 +21,9 @@ Download the ``PiratesBooty`` folder and run ``Pirate's Booty.exe``. Enjoy!
 ### *Game Designer & Programmer*
 
 Owen Campbell
+
 Jacob Dyer
+
 Christina Pilip
 
 ### *Artist*
