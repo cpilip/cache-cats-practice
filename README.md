@@ -12,6 +12,10 @@ The theme picked by a neutral party of our peers (okay, just Sarah) was "Water A
 
 ![logo](https://github.com/cpilip/cache-cats-trial/blob/master/Art/Logo.png)
 
+## ***Game Description***
+
+Download the ``PiratesBooty`` folder and run ``Pirate's Booty.exe``. Enjoy! 
+
 ## ***The Cache Cats***
 
 ### *Game Designer & Programmer*
