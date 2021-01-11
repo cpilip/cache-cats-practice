@@ -27,6 +27,8 @@ public class GiftManager : MonoBehaviour
 
     private System.Random randm = new System.Random();
 
+    public AudioSource HeartSound;
+
     public void GiveGift()
     {
         AssignHearts();
@@ -44,6 +46,7 @@ public class GiftManager : MonoBehaviour
 
                     Inventory.Shells--;
                     Inventory.MermaidHearts++;
+                    HeartSound.Play();
                     DisplayHeartLevel(Inventory.MermaidHearts);
                     GetThanks("Sylvio");
                 }
@@ -57,6 +60,7 @@ public class GiftManager : MonoBehaviour
 
                     Inventory.Doubloons--;
                     Inventory.MateHearts++;
+                    HeartSound.Play();
                     DisplayHeartLevel(Inventory.MateHearts);
                     GetThanks("Mate");
                 }
@@ -70,6 +74,7 @@ public class GiftManager : MonoBehaviour
 
                     Inventory.Gems--;
                     Inventory.MadgeHearts++;
+                    HeartSound.Play();
                     DisplayHeartLevel(Inventory.MadgeHearts);
                     GetThanks("Madge");
                 }
@@ -83,6 +88,7 @@ public class GiftManager : MonoBehaviour
 
                     Inventory.Rum--;
                     Inventory.ParrotHearts++;
+                    HeartSound.Play();
                     DisplayHeartLevel(Inventory.ParrotHearts);
                     GetThanks("Parrot");
                 }
@@ -96,6 +102,7 @@ public class GiftManager : MonoBehaviour
 
                     Inventory.Spices--;
                     Inventory.PrivateerHearts++;
+                    HeartSound.Play();
                     DisplayHeartLevel(Inventory.PrivateerHearts);
                     GetThanks("Jay");
                 }

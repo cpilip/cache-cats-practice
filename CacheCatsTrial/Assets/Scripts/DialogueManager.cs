@@ -25,9 +25,11 @@ public class DialogueManager : MonoBehaviour
     private System.Random randm = new System.Random();
     private Color originalColor;
 
+    public AudioSource ClickSound;
+    public AudioSource SplashSound;
+
     public GameObject particleContainer;
 
-    
     public void EnableDialogue()
     {
         characterName = EventSystem.current.currentSelectedGameObject.name;
@@ -41,6 +43,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(0).gameObject;
                     portrait.SetActive(true);
+                    SplashSound.Play();
                     if (Inventory.MermaidHearts == 0)
                     {
                         particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
@@ -72,6 +75,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(1).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.MateHearts == 0)
                     {
                         particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
@@ -103,6 +107,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(2).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.MadgeHearts == 0)
                     {
                         particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
@@ -133,6 +138,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(3).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.ParrotHearts == 0)
                     {
                         particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
@@ -164,6 +170,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueInterface.SetActive(true);
                     portrait = dialogueInterface.transform.GetChild(1).GetChild(4).gameObject;
                     portrait.SetActive(true);
+                    ClickSound.Play();
                     if (Inventory.PrivateerHearts == 0)
                     {
                         particleContainer.transform.GetChild(1).GetComponent<ParticleSystem>().Play();

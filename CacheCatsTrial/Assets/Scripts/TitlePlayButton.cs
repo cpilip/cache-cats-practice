@@ -55,6 +55,11 @@ public class TitlePlayButton : MonoBehaviour
         SceneManager.LoadScene("DebugMiniGame");
     }
 
+    public void StartMiniGame()
+    {
+        SceneManager.LoadScene("MiniGame");
+    }
+
     public void BackToHub()
     {
         SceneManager.LoadScene("Hub");
