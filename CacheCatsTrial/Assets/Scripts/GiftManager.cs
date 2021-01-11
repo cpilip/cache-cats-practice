@@ -108,12 +108,13 @@ public class GiftManager : MonoBehaviour
                 }
                 break;
         }
-        
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        HeartSound.ignoreListenerPause = true;
         sentences = new Queue<string>();
     }
 
@@ -253,7 +254,7 @@ public class GiftManager : MonoBehaviour
         {
             hearts[i] = dialogueInterface.transform.GetChild(3).GetChild(i).gameObject;
         }
-        
+
     }
     private void DisplayHeartLevel(int lvl)
     {
@@ -261,7 +262,7 @@ public class GiftManager : MonoBehaviour
         {
             lvl = 5;
         }
-        for (int i=0; i<lvl-1; i++)
+        for (int i = 0; i < lvl - 1; i++)
         {
             hearts[i].GetComponent<Image>().sprite = RedHeart;
         }

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class HubAudioLoop : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject audiocontainer;
+    private GameObject audioIntro;
+    private GameObject audioLoop;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        audioIntro = audiocontainer.transform.GetChild(0).gameObject;
+        audioLoop = audiocontainer.transform.GetChild(1).gameObject;
+
+        audioIntro.GetComponent<AudioSource>().Play();
+
+        audioLoop.GetComponent<AudioSource>().PlayDelayed(audioIntro.GetComponent<AudioSource>().clip.length);
     }
 }

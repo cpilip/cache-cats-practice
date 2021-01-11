@@ -203,7 +203,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 break;
         }
-        
+
     }
 
     // Start is called before the first frame update
@@ -211,9 +211,11 @@ public class DialogueManager : MonoBehaviour
     {
         originalColor = dialogueInterface.transform.GetChild(0).GetComponent<Image>().color;
         sentences = new Queue<string>();
+        ClickSound.ignoreListenerPause = true; ;
+        SplashSound.ignoreListenerPause = true; ;
     }
 
-    public void StartDialogue (Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue)
     {
         nameText.text = dialogue.name;
 
@@ -255,7 +257,7 @@ public class DialogueManager : MonoBehaviour
             {
                 i++;
             }
-            nameText.text = sentence.Substring(1, i-1);
+            nameText.text = sentence.Substring(1, i - 1);
             // if name is empty, disable name box to imply narrator speech
             if (nameText.text == " ")
             {
@@ -268,7 +270,7 @@ public class DialogueManager : MonoBehaviour
             // stop coroutines to prevent overlap of two letter typers when clicking through too fast
             StopAllCoroutines();
             StartCoroutine(TypeSentence(sentence.Substring(i - 1 + 2)));
-        }        
+        }
         else
         {
             // if no name flag, reset name to characterName
@@ -281,7 +283,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisableDialogue()
     {
-
+        AudioListener.pause = false;
         dialogueInterface.transform.GetChild(0).GetComponent<Image>().color = originalColor;
         portrait.SetActive(false);
         dialogueInterface.SetActive(false);
@@ -297,7 +299,7 @@ public class DialogueManager : MonoBehaviour
         StartDialogue(dialogue);
     }
 
-    IEnumerator TypeSentence (string sentence)
+    IEnumerator TypeSentence(string sentence)
     {
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
@@ -314,18 +316,20 @@ public class DialogueManager : MonoBehaviour
         ReadDialogue(puntxt);
     }
 
-    private void PlayMusic()
+    public void PlayMusic()
     {
+
+        //StopAllAudio();
+        AudioListener.pause = true;
+
         audioIntro = portrait.transform.GetChild(0).gameObject;
         audioLoop = portrait.transform.GetChild(1).gameObject;
 
+        audioIntro.GetComponent<AudioSource>().ignoreListenerPause = true;
+        audioLoop.GetComponent<AudioSource>().ignoreListenerPause = true;
         audioIntro.GetComponent<AudioSource>().Play();
-        StartCoroutine(WaitForSound(audioLoop.GetComponent<AudioClip>()));
-    }
 
-    public IEnumerator WaitForSound(AudioClip Sound)
-    {
-        yield return new WaitWhile(() => audioIntro.GetComponent<AudioSource>().isPlaying == true);
-        audioLoop.GetComponent<AudioSource>().Play();
+        audioLoop.GetComponent<AudioSource>().PlayDelayed(audioIntro.GetComponent<AudioSource>().clip.length);
+
     }
 }
