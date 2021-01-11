@@ -211,7 +211,9 @@ public class DialogueManager : MonoBehaviour
     {
         originalColor = dialogueInterface.transform.GetChild(0).GetComponent<Image>().color;
         sentences = new Queue<string>();
-    }
+        ClickSound.ignoreListenerPause = true; ;
+        SplashSound.ignoreListenerPause = true; ;
+}
 
     public void StartDialogue (Dialogue dialogue)
     {
@@ -281,7 +283,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisableDialogue()
     {
-
+        AudioListener.pause = false;
         dialogueInterface.transform.GetChild(0).GetComponent<Image>().color = originalColor;
         portrait.SetActive(false);
         dialogueInterface.SetActive(false);
@@ -314,18 +316,20 @@ public class DialogueManager : MonoBehaviour
         ReadDialogue(puntxt);
     }
 
-    private void PlayMusic()
+    public void PlayMusic()
     {
+
+        //StopAllAudio();
+        AudioListener.pause = true;
+
         audioIntro = portrait.transform.GetChild(0).gameObject;
         audioLoop = portrait.transform.GetChild(1).gameObject;
 
+        audioIntro.GetComponent<AudioSource>().ignoreListenerPause = true;
+        audioLoop.GetComponent<AudioSource>().ignoreListenerPause = true;
         audioIntro.GetComponent<AudioSource>().Play();
-        StartCoroutine(WaitForSound(audioLoop.GetComponent<AudioClip>()));
-    }
 
-    public IEnumerator WaitForSound(AudioClip Sound)
-    {
-        yield return new WaitWhile(() => audioIntro.GetComponent<AudioSource>().isPlaying == true);
-        audioLoop.GetComponent<AudioSource>().Play();
+        audioLoop.GetComponent<AudioSource>().PlayDelayed(audioIntro.GetComponent<AudioSource>().clip.length);
+        
     }
 }
