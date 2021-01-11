@@ -114,7 +114,6 @@ public class GiftManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HeartSound.ignoreListenerPause = true;
         sentences = new Queue<string>();
     }
 
