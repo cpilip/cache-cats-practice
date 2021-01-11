@@ -134,6 +134,7 @@ public class DialogueManager : MonoBehaviour
                     {
                         GetPun("Madge", 5);
                     }
+                    CanTalk.toMadge = false;
                 }
                 break;
             case "Polly":

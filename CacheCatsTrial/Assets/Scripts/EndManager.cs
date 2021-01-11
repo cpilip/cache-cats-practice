@@ -19,6 +19,13 @@ public class EndManager : MonoBehaviour
     public Dialogue dialogue;
     string myFilePath;
 
+    private AudioSource[] allAudioSources;
+  
+    void Awake()
+    {
+        allAudioSources = FindObjectsOfType<AudioSource>();
+    }
+
     //public Image element;
     void OnEnable()
         {
@@ -41,7 +48,7 @@ public class EndManager : MonoBehaviour
         // Once done, disable dialogue and start the following coroutine
         EnableDialogue();
 
-        yield return StartCoroutine("fadeText");
+        
 
     }
 
@@ -69,6 +76,11 @@ public class EndManager : MonoBehaviour
 
     public void EnableDialogue()
     {
+        foreach (AudioSource audioS in allAudioSources)
+        {
+            audioS.Stop();
+        }
+
         dialogueInterface.SetActive(true);
         ReadDialogue("End_Text.txt");
         music.Play();
@@ -110,6 +122,7 @@ public class EndManager : MonoBehaviour
     public void DisableDialogue()
     {
         dialogueInterface.SetActive(false);
+        StartCoroutine("fadeText");
     }
 
     public void ReadDialogue(string fileName)
